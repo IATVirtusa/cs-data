@@ -1,0 +1,16 @@
+
+
+# 1.copy cars data file to hdfs location "/user/<username>/carsdata"
+
+if hdfs dir is not present, create one by using below command
+hadoop fs -mkdir /user/<username>/carsdata
+
+
+hdfs dfs -copyFromLocal cars.csv /user/<username>/carsdata
+
+
+#2.List the file under directory
+
+hdfs dfs -ls /user/<username>/carsdata
+
+
