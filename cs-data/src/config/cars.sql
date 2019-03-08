@@ -13,4 +13,4 @@ CREATE EXTERNAL TABLE IF NOT EXISTS test.cars(
     ROW FORMAT DELIMITED
     FIELDS TERMINATED BY ','
     STORED AS TEXTFILE
-    location '/user/<username>/carsdata';
+    location '/user/jenkins/carsdata';
