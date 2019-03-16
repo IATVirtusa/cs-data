@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       parallel {
-        stage('Build') {
+        stage('Data Build') {
           agent any
           steps {
             build 'CS_Data_Build'
@@ -13,17 +13,27 @@ pipeline {
         stage('Java Build') {
           steps {
             echo 'build java'
+            build 'CS_Data_HiveBuild'
           }
         }
       }
     }
-    stage('deploy') {
-      agent any
-      steps {
-        build 'CS_Data_Deploy'
+    stage('Unit Tests') {
+      parallel {
+        stage('Unit Tests') {
+          agent any
+          steps {
+            build 'CS_Data_HiveUnitTest'
+          }
+        }
+        stage('Unit Test 2') {
+          steps {
+            echo 'running unit tests'
+          }
+        }
       }
     }
-    stage('End') {
+    stage('Code Analysis') {
       agent {
         node {
           label 'test_1'
@@ -31,7 +41,36 @@ pipeline {
 
       }
       steps {
-        echo 'Complete'
+        echo 'Sonarcube'
+      }
+    }
+    stage('Dev Deploy') {
+      steps {
+        build 'CS_Data_Deploy'
+      }
+    }
+    stage('Integration Test') {
+      parallel {
+        stage('Integration Test') {
+          steps {
+            build 'CDH_TestNG'
+          }
+        }
+        stage('Browser Tests') {
+          steps {
+            echo 'run tests'
+          }
+        }
+      }
+    }
+    stage('artifacts') {
+      steps {
+        echo 'test'
+      }
+    }
+    stage('End') {
+      steps {
+        echo 'end'
       }
     }
   }
