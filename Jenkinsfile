@@ -7,7 +7,7 @@ pipeline {
           agent any
           steps {
             build 'CS_Data_Build'
-            build 'CS_Data_Build'
+            
           }
         }
         stage('Java Build') {
