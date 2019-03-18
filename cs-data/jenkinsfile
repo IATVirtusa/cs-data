@@ -24,5 +24,14 @@ pipeline {
         echo 'Complete'
       }
     }
+    
+    post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            
+        }
+    }
+    
+    
   }
 }
