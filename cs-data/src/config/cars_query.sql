@@ -1,1 +1,1 @@
-select * from test.cars;
+select * from test.cars limit 50;
