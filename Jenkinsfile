@@ -43,7 +43,7 @@ pipeline {
         echo 'Sonarcube'
       }
     }
-    stage('Dev Deploy') {
+    stage('Dev/QA Deploy') {
       steps {
         build 'CS_Data_Deploy'
       }
@@ -66,12 +66,17 @@ pipeline {
       steps {
         echo 'test'
         archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
-        junit '/var/lib/jenkins/workspace/CS_Data_HiveUnitTest/hdfsutil/target/surefire-reports/*.xml'
+        //junit '/var/lib/jenkins/workspace/CS_Data_HiveUnitTest/hdfsutil/target/surefire-reports/*.xml'
       }
     }
-    stage('JIRA') {
+    stage('JIRA(DUMMY)') {
       steps {
         echo 'Jira update'
+      }
+    }
+    stage('UAT') {
+      steps {
+        echo 'UAT Deploy sets'
       }
     }
   }
