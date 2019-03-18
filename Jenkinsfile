@@ -66,6 +66,7 @@ pipeline {
       steps {
         echo 'test'
         archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
+        junit 'target/surefire-reports/**/*.xml'
       }
     }
     stage('JIRA') {
