@@ -66,7 +66,7 @@ pipeline {
       steps {
         echo 'test'
         archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
-        junit '**/CS_Data_HiveUnitTest/**/target/surefire-reports/**/*.xml'
+        junit '/var/lib/jenkins/workspace/CS_Data_HiveUnitTest/hdfsutil/target/surefire-reports/*.xml'
       }
     }
     stage('JIRA') {
