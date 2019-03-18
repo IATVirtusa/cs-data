@@ -50,7 +50,7 @@ pipeline {
     }
     stage('QA Tests') {
       parallel {
-        stage('Integration Test') {
+        stage('TestNG Tests') {
           steps {
             build 'CDH_TestNG'
           }
@@ -65,9 +65,7 @@ pipeline {
     stage('artifacts') {
       steps {
         echo 'test'
-        archiveArtifacts artifacts: '**/*.jar', fingerprint: true
-        //junit '**/TEST*.xml'
-              
+        archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
       }
     }
     stage('JIRA') {
@@ -75,7 +73,5 @@ pipeline {
         echo 'Jira update'
       }
     }
-    
-    
   }
 }
