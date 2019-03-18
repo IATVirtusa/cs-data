@@ -7,7 +7,6 @@ pipeline {
           agent any
           steps {
             build 'CS_Data_Build'
-            
           }
         }
         stage('Java Build') {
@@ -26,14 +25,14 @@ pipeline {
             build 'CS_Data_HiveUnitTest'
           }
         }
-        stage('Unit Test 2') {
+        stage('Unit runs 2 (Dummy)') {
           steps {
             echo 'running unit tests'
           }
         }
       }
     }
-    stage('Code Analysis') {
+    stage('Code Analysis(Dummy)') {
       agent {
         node {
           label 'test_1'
@@ -49,14 +48,14 @@ pipeline {
         build 'CS_Data_Deploy'
       }
     }
-    stage('Integration Test') {
+    stage('QA Tests') {
       parallel {
         stage('Integration Test') {
           steps {
             build 'CDH_TestNG'
           }
         }
-        stage('Browser Tests') {
+        stage('Browser Tests(Dummy)') {
           steps {
             echo 'run tests'
           }
@@ -68,9 +67,9 @@ pipeline {
         echo 'test'
       }
     }
-    stage('End') {
+    stage('JIRA') {
       steps {
-        echo 'end'
+        echo 'Jira update'
       }
     }
   }
