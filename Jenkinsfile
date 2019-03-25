@@ -33,12 +33,7 @@ pipeline {
       }
     }
     stage('Code Analysis(Dummy)') {
-      agent {
-        node {
-          label 'test_1'
-        }
-
-      }
+      agent any
       steps {
         echo 'Sonarcube'
       }
@@ -65,10 +60,8 @@ pipeline {
     stage('artifacts') {
       steps {
         echo 'test'
-         echo 'test1'
+        echo 'test1'
         archiveArtifacts(artifacts: '**/*.jar', fingerprint: true)
-        //junit '/var/lib/jenkins/workspace/CS_Data_HiveUnitTest/hdfsutil/target/surefire-reports/*.xml'
-        
       }
     }
     stage('JIRA(DUMMY)') {
